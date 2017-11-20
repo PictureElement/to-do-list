@@ -46,6 +46,26 @@ hr {
     margin-right: 80px;
 }
 
+ul#complete:not(:empty) {
+    padding-top: 40px;
+    position: relative;
+}
+
+ul#complete:not(:empty):before {
+    content: "";
+    width: 260px;
+    /* 
+        The center of the pseudoelement should be at the middle. That's why I 
+        added the negative margin-left
+    */
+    margin-left: -130px;
+    height: 1px;
+    background: #333;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+}
+
 
 /* Small devices (landscape phones, 576px and up) */
 
