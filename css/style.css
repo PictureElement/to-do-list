@@ -1,5 +1,5 @@
 html {
-  font-size: 1rem;
+    font-size: 14px;
 }
 
 body {
@@ -8,13 +8,14 @@ body {
 }
 
 .fixed-top {
-    box-shadow: 0px 2px 4px rgba(44,62,80,0.15);
+    box-shadow: 0px 2px 4px rgba(44, 62, 80, 0.15);
 }
 
-ul#pending li, ul#completed li {
+ul#pending li,
+ul#completed li {
     font-weight: 500;
     margin-bottom: 10px;
-    box-shadow: 0px 1px 2px rgba(44,62,80,0.15);
+    box-shadow: 0px 1px 2px rgba(44, 62, 80, 0.15);
 }
 
 p {
@@ -32,11 +33,34 @@ ul#pending li:last-of-type {
 }
 
 div#activities {
-    /* Accommodate for the fixed-top, which is 79px */
-    margin-top: 89px;
+    /* Accommodate for the fixed-top, which is 75.5px */
+    margin-top: 85.5px;
 }
 
 hr {
     margin-left: 80px;
     margin-right: 80px;
+}
+
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) {
+    
+}
+
+
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+    
+}
+
+
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 768px) {
+    
 }
