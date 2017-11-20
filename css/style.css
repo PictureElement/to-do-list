@@ -33,8 +33,8 @@ ul#pending li:last-of-type {
 }
 
 div#activities {
-    /* Accommodate for the fixed-top, which is 75.5px */
-    margin-top: 85.5px;
+    /* Accommodate for the fixed-top, which is 83.5px */
+    margin-top: 93.5px;
 }
 
 hr {
