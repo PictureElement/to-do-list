@@ -26,7 +26,7 @@ $('#pending').on('click', function(e) {
     var target = $(e.target);
     console.log(target);
     // If a .btn-delete element or .fa-trash-o element is clicked
-    if ( target.is('.btn-delete') || target.is('.fa-trash-o') ) {
+    if (target.is('.btn-delete .fa-trash-o')) {
         target.parents('li').remove();
     }
 })
@@ -36,40 +36,42 @@ $('#pending').on('click', function(e) {
 // Complete activity:
 $('#pending').on('click', function(e) {
     var target = $(e.target);
-    var activity;
+    var activity, button;
     // If a .btn-complete element or .fa-check element is clicked
-    if ( target.is('.btn-complete') || target.is('.fa-check') ) {
+    if (target.is('.btn-complete .fa-check')) {
+        // if the target is the button
+        if (target.is('.btn-complete')) {
+            // hide 'check' button
+            target.css("display", "none");
+        }
+        // if the target is the font icon
+        else {
+            // hide 'check' button
+            target.parent().css("display", "none");
+        }
+        // Select list item
         activity = target.parents('li');
+        // Select html content 
         var htmlContents = activity.html();
+        // Remove list item from 'pending' list
         activity.remove();
         htmlContents = '<li class="list-group-item list-group-item-success list-group-item-action d-flex justify-content-between align-items-center rounded">' + htmlContents + '</li>';
+        // Copy html content to 'complete' list
         $("#complete").prepend(htmlContents);
     }
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
 //------------------------------------------------------------------------------
 
-///Add item to the pending list
+///Add item to the 'pending' list
 function addItemPending(text) {
     var pendingItem = '<li class="list-group-item list-group-item-warning list-group-item-action d-flex justify-content-between align-items-center rounded"> <p class="text-truncate">%data%</p><div class="btn-group" role="group" aria-label="functions"> <button type="button" class="btn-delete btn btn-danger" data-toggle="tooltip" data-placement="auto" title="Delete activity"><i class="fa fa-2x fa-trash-o" aria-hidden="true"></i></button> <button type="button" class="btn-complete btn btn-info"><i class="fa fa-2x fa-check" aria-hidden="true"></i></button> </div></li>';
     content = pendingItem.replace("%data%", text);
-    /* Latest activity first in the list */ 
+    /* Latest activity first in the list */
     $("#pending").prepend(content);
 }
 
-///Add item to the complete list
+///Add item to the 'complete' list
 function addItemComplete(activity) {
     $("#complete").prepend(activity);
 }
