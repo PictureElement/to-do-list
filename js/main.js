@@ -20,9 +20,11 @@ addButton.on('click', function() {
     var text = $('#item').val();
     // If value is not empty, add it to the 'data' object and to the pending list
     if (text) {
+        // Add item to the 'data' object
         data.pending.push(text);
         // Add item to the 'pending' list
         addItemPending(text);
+        console.log(data);
     }
 })
 
@@ -37,7 +39,6 @@ $('#pending').on('click', function(e) {
     // afterwards.
     // If a .btn-delete element or .fa-trash-o element is clicked
     if (target.is('.btn-delete') || target.is('.fa-trash-o')) {
-        console.log("1");
         target.parents('li').remove();
     }
 
@@ -47,21 +48,11 @@ $('#pending').on('click', function(e) {
     if (target.is('.btn-complete') || target.is('.fa-check')) {
         // If the target is the button
         if (target.is('.btn-complete')) {
-            console.log("2");
             button = target;
-            // Hide 'check' button
-            button.css("display", "none");
-            // Add rounded corners to 'delete' button
-            button.siblings().addClass("rounded");
         }
         // If the target is the font icon
         else {
-            console.log("3");
             button = target.parent();
-            // Hide 'check' button
-            button.css("display", "none");
-            // Add rounded corners to 'delete' button
-            button.siblings().addClass("rounded");
         }
         // Select list item
         activity = target.parents('li');
@@ -69,8 +60,13 @@ $('#pending').on('click', function(e) {
         text = activity.text();
         // Remove list item from the 'pending' list
         activity.remove();
+        // Remove item from pending list ('data' object)
+        data.pending.splice(data.pending.indexOf(text), 1);
+        // Add item to the complete list ('data' object)
+        data.complete.push(text);
         // Add item to the 'complete' list
         addItemComplete(text);
+        console.log(data);
     }
 })
 
@@ -84,7 +80,6 @@ $('#complete').on('click', function(e) {
     // afterwards.
     // If a .btn-delete element or .fa-trash-o element is clicked
     if (target.is('.btn-delete') || target.is('.fa-trash-o')) {
-        console.log("1");
         target.parents('li').remove();
     }
 })
@@ -93,7 +88,7 @@ $('#complete').on('click', function(e) {
 
 // Add item to the 'pending' list
 function addItemPending(text) {
-    var pendingItem = '<li class="list-group-item list-group-item-warning list-group-item-action d-flex justify-content-between align-items-center rounded"> <p class="text-truncate">%data%</p><div class="btn-group" role="group" aria-label="functions"> <button type="button" class="btn-delete btn btn-danger" data-toggle="tooltip" data-placement="auto" title="Delete activity"><i class="fa fa-2x fa-trash-o" aria-hidden="true"></i></button> <button type="button" class="btn-complete btn btn-info"><i class="fa fa-2x fa-check" aria-hidden="true"></i></button> </div></li>';
+    var pendingItem = '<li class="list-group-item list-group-item-warning list-group-item-action d-flex justify-content-between align-items-center rounded"><p class="text-truncate">%data%</p><div class="btn-group" role="group" aria-label="functions"><button type="button" class="btn-delete btn btn-danger" data-toggle="tooltip" data-placement="auto" title="Delete activity"><i class="fa fa-2x fa-trash-o" aria-hidden="true"></i></button><button type="button" class="btn-complete btn btn-info"><i class="fa fa-2x fa-check" aria-hidden="true"></i></button></div></li>';
     content = pendingItem.replace("%data%", text);
     // Latest activity should be on top
     $("#pending").prepend(content);
@@ -101,7 +96,7 @@ function addItemPending(text) {
 
 // Add item to the 'complete' list
 function addItemComplete(text) {
-    var completeItem = '<li class="list-group-item list-group-item-success list-group-item-action d-flex justify-content-between align-items-center rounded"> <p class="text-truncate">%data%</p><div class="btn-group" role="group" aria-label="functions"> <button type="button" class="btn-delete btn btn-danger" data-toggle="tooltip" data-placement="auto" title="Delete activity"><i class="fa fa-2x fa-trash-o" aria-hidden="true"></i></button> <button type="button" class="btn-complete btn btn-info"><i class="fa fa-2x fa-check" aria-hidden="true"></i></button> </div></li>';
+    var completeItem = '<li class="list-group-item list-group-item-success list-group-item-action d-flex justify-content-between align-items-center rounded"><p class="text-truncate">%data%</p><div class="btn-group" role="group" aria-label="functions"><button type="button" class="btn-delete btn btn-danger" data-toggle="tooltip" data-placement="auto" title="Delete activity"><i class="fa fa-2x fa-trash-o" aria-hidden="true"></i></button></div></li>';
     content = completeItem.replace("%data%", text);
     // Latest completed activity should be on top
     $("#complete").prepend(content);
