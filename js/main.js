@@ -17,9 +17,9 @@ addButton.on('click', function() {
     }
 })
 
-
 //------------------------------------------------------------------------------
 
+// Delete & Complete activities from the 'pending' list
 $('#pending').on('click', function(e) {
     var target = $(e.target);
     var activity, button;
@@ -56,13 +56,33 @@ $('#pending').on('click', function(e) {
         }
         // Select list item
         activity = target.parents('li');
-        // Select html content 
-        var htmlContents = activity.html();
-        // Remove list item from 'pending' list
+        console.log(activity);
+        // Wrap the list item in a dummy div container in order to get the HTML 
+        // content
+        var htmlContents = activity.wrap('<div class="dummy"></div>').parent().html();
+        // Change the contextual bg color of the list item
+        htmlContents = htmlContents.replace("list-group-item-warning", "list-group-item-success");
+        // Remove the dummy div container
+        activity.unwrap();
+        // Remove list item from the 'pending' list
         activity.remove();
-        htmlContents = '<li class="list-group-item list-group-item-success list-group-item-action d-flex justify-content-between align-items-center rounded">' + htmlContents + '</li>';
         // Copy html content to 'complete' list
         $("#complete").prepend(htmlContents);
+    }
+})
+
+//------------------------------------------------------------------------------
+
+// Delete activities from the 'complete' list
+$('#complete').on('click', function(e) {
+    var target = $(e.target);
+
+    // Delete activity: a delegated event is used since activities are created 
+    // afterwards.
+    // If a .btn-delete element or .fa-trash-o element is clicked
+    if (target.is('.btn-delete') || target.is('.fa-trash-o')) {
+        console.log("1");
+        target.parents('li').remove();
     }
 })
 
@@ -74,9 +94,4 @@ function addItemPending(text) {
     content = pendingItem.replace("%data%", text);
     // Latest activity should be on top
     $("#pending").prepend(content);
-}
-
-// Add item to the 'complete' list
-function addItemComplete(activity) {
-    $("#complete").prepend(activity);
 }
