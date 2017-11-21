@@ -1,3 +1,9 @@
+var data = {
+    pending: [],
+    complete: []
+};
+
+
 // The event listeners:
 //     1. listen to the specified element
 //     2. listen for a 'click' event
@@ -8,11 +14,13 @@
 // Select the add button
 var addButton = $('#btn-add');
 
-// Add activity - a direct-bound event is used
+// Add activity
+// A direct-bound event is used
 addButton.on('click', function() {
     var text = $('#item').val();
-    // If value is not empty, add to the pending list
+    // If value is not empty, add it to the local object and to the pending list
     if (text) {
+        data.pending.push(text);
         addItemPending(text);
     }
 })
