@@ -18,9 +18,10 @@ var addButton = $('#btn-add');
 // A direct-bound event is used
 addButton.on('click', function() {
     var text = $('#item').val();
-    // If value is not empty, add it to the local object and to the pending list
+    // If value is not empty, add it to the 'data' object and to the pending list
     if (text) {
         data.pending.push(text);
+        // Add item to the 'pending' list
         addItemPending(text);
     }
 })
@@ -30,7 +31,7 @@ addButton.on('click', function() {
 // Delete & Complete activities from the 'pending' list
 $('#pending').on('click', function(e) {
     var target = $(e.target);
-    var activity, button;
+    var activity, button, text;
 
     // Delete activity: a delegated event is used since activities are created 
     // afterwards.
@@ -64,18 +65,12 @@ $('#pending').on('click', function(e) {
         }
         // Select list item
         activity = target.parents('li');
-        console.log(activity);
-        // Wrap the list item in a dummy div container in order to get the HTML 
-        // content
-        var htmlContents = activity.wrap('<div class="dummy"></div>').parent().html();
-        // Change the contextual bg color of the list item
-        htmlContents = htmlContents.replace("list-group-item-warning", "list-group-item-success");
-        // Remove the dummy div container
-        activity.unwrap();
+        // Get the text contents of the list item (i.e. actual user input)
+        text = activity.text();
         // Remove list item from the 'pending' list
         activity.remove();
-        // Copy html content to 'complete' list
-        $("#complete").prepend(htmlContents);
+        // Add item to the 'complete' list
+        addItemComplete(text);
     }
 })
 
@@ -102,4 +97,12 @@ function addItemPending(text) {
     content = pendingItem.replace("%data%", text);
     // Latest activity should be on top
     $("#pending").prepend(content);
+}
+
+// Add item to the 'complete' list
+function addItemComplete(text) {
+    var completeItem = '<li class="list-group-item list-group-item-success list-group-item-action d-flex justify-content-between align-items-center rounded"> <p class="text-truncate">%data%</p><div class="btn-group" role="group" aria-label="functions"> <button type="button" class="btn-delete btn btn-danger" data-toggle="tooltip" data-placement="auto" title="Delete activity"><i class="fa fa-2x fa-trash-o" aria-hidden="true"></i></button> <button type="button" class="btn-complete btn btn-info"><i class="fa fa-2x fa-check" aria-hidden="true"></i></button> </div></li>';
+    content = completeItem.replace("%data%", text);
+    // Latest completed activity should be on top
+    $("#complete").prepend(content);
 }
