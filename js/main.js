@@ -1,5 +1,6 @@
-// Load list from local storage (if it is possible) or start new
 var data;
+
+// Load list from local storage (if it is possible) or as an empty object
 // getItem() returns null if the localStorage object is empty
 if (localStorage.getItem("listData") === null) {
     data = {
@@ -13,11 +14,13 @@ else {
 
     for (var i = 0; i < data.pending.length; i++) {
         var text = data.pending[i];
+        // flag = 0: no need to update local storage and add to 'data'
         addItemPending(text, 0);
     }
 
     for (var j = 0; j < data.complete.length; j++) {
         var text = data.complete[j];
+        // flag = 0: no need to update local storage and add to 'data'
         addItemComplete(text, 0)
     }
 }
@@ -40,6 +43,7 @@ addButton.on('click', function() {
     var text = $('#item').val();
     // If value is not empty, add it to the data.pending and to the DOM
     if (text) {
+        // flag = 1: need to update local storage and add to 'data'
         addItemPending(text, 1);
     }
 })
@@ -88,6 +92,7 @@ $('#pending').on('click', function(e) {
         // Remove item from data.pending
         data.pending.splice(data.pending.indexOf(text), 1);
         // Add item to the data.complete and to the DOM
+        // flag = 1: need to update local storage and add to 'data'
         addItemComplete(text, 1);
     }
 })
@@ -140,6 +145,7 @@ function localStorageUpdate() {
 
 // Add pending item
 function addItemPending(text, flag) {
+    // flag = 1: need to update local storage and add to 'data'
     if (flag === 1) {
         // Add item to data.pending
         data.pending.push(text);
@@ -156,6 +162,7 @@ function addItemPending(text, flag) {
 
 // Add complete item
 function addItemComplete(text, flag) {
+    // flag = 1: need to update local storage and add to 'data'
     if (flag === 1) {
         // Add item to data.complete
         data.complete.push(text);
