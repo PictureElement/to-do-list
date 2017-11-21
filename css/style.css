@@ -46,12 +46,12 @@ hr {
     margin-right: 80px;
 }
 
-ul#complete:not(:empty) {
+ul#complete {
     padding-top: 40px;
     position: relative;
 }
 
-ul#complete:not(:empty):before {
+ul#complete:before {
     content: "";
     width: 260px;
     /* 
@@ -60,11 +60,29 @@ ul#complete:not(:empty):before {
     */
     margin-left: -130px;
     height: 1px;
-    background: #333;
+    background: rgba(0, 0, 0, 0.1);
     position: absolute;
     top: 20px;
     left: 50%;
 }
+
+ul#pending:empty:after {
+    content: "You have nothing to do!";
+    margin-top: 10px;
+}
+
+ul#complete:empty:after {
+    content: "You have yet to complete any tasks.";
+}
+
+ul#pending:after, ul#complete:after {
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-weight: 100;
+}
+
+
 
 
 /* Small devices (landscape phones, 576px and up) */
