@@ -3,7 +3,14 @@ var data = {
     complete: []
 };
 
-// The event listeners:
+//------------------------------------------------------------------------------
+
+// Construct the JS object described by the string
+console.log(JSON.parse(localStorage.getItem("listData")));
+
+//------------------------------------------------------------------------------
+
+// The following event listeners:
 //     1. listen to the specified element
 //     2. listen for a 'click' event
 //     3. perform a series of actions when the specified element is clicked
@@ -96,7 +103,22 @@ $('#complete').on('click', function(e) {
 
 //------------------------------------------------------------------------------
 
+// The localStorage object stores the data with no expiration date. The data 
+// will not be deleted when the browser is closed. 
+
+// Store:
+//localStorage.setItem("key", "value");
+
+// Retrieve:
+//localStorage.getItem("key");
+
+// Remove:
+//localStorage.removeItem("key");
+
 function localStorageUpdate() {
+    // The localStorage object can only store text. Thus, we need to convert the 
+    // 'data' object into text.
+    localStorage.setItem("listData", JSON.stringify(data));
     console.log("local storage updated");
 }
 
