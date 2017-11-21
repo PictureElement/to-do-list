@@ -1,12 +1,26 @@
-var data = {
-    pending: [],
-    complete: []
-};
+// Load list from local storage (if it is possible) or start new
+var data;
+// getItem() returns null if the localStorage object is empty
+if (localStorage.getItem("listData") === null) {
+    data = {
+        pending: [],
+        complete: []
+    };
+}
+else {
+    // Construct the JS object described by the string
+    data = JSON.parse(localStorage.getItem("listData"));
 
-//------------------------------------------------------------------------------
+    for (var i = 0; i < data.pending.length; i++) {
+        var text = data.pending[i];
+        addItemPending(text, 0);
+    }
 
-// Construct the JS object described by the string
-console.log(JSON.parse(localStorage.getItem("listData")));
+    for (var j = 0; j < data.complete.length; j++) {
+        var text = data.complete[j];
+        addItemComplete(text, 0)
+    }
+}
 
 //------------------------------------------------------------------------------
 
@@ -26,7 +40,7 @@ addButton.on('click', function() {
     var text = $('#item').val();
     // If value is not empty, add it to the data.pending and to the DOM
     if (text) {
-        addItemPending(text);
+        addItemPending(text, 1);
     }
 })
 
@@ -74,7 +88,7 @@ $('#pending').on('click', function(e) {
         // Remove item from data.pending
         data.pending.splice(data.pending.indexOf(text), 1);
         // Add item to the data.complete and to the DOM
-        addItemComplete(text);
+        addItemComplete(text, 1);
     }
 })
 
@@ -119,17 +133,19 @@ function localStorageUpdate() {
     // The localStorage object can only store text. Thus, we need to convert the 
     // 'data' object into text.
     localStorage.setItem("listData", JSON.stringify(data));
-    console.log("local storage updated");
+    //console.log("local storage updated");
 }
 
 //------------------------------------------------------------------------------
 
 // Add pending item
-function addItemPending(text) {
-    // Add item to data.pending
-    data.pending.push(text);
-    // Update local storage
-    localStorageUpdate();
+function addItemPending(text, flag) {
+    if (flag === 1) {
+        // Add item to data.pending
+        data.pending.push(text);
+        // Update local storage
+        localStorageUpdate();
+    }
     var pendingItem = '<li class="list-group-item list-group-item-warning list-group-item-action d-flex justify-content-between align-items-center rounded"><p class="text-truncate">%data%</p><div class="btn-group" role="group" aria-label="functions"><button type="button" class="btn-delete btn btn-danger" data-toggle="tooltip" data-placement="auto" title="Delete activity"><i class="fa fa-2x fa-trash-o" aria-hidden="true"></i></button><button type="button" class="btn-complete btn btn-info"><i class="fa fa-2x fa-check" aria-hidden="true"></i></button></div></li>';
     content = pendingItem.replace("%data%", text);
     // Add activity to the DOM
@@ -139,11 +155,13 @@ function addItemPending(text) {
 //------------------------------------------------------------------------------
 
 // Add complete item
-function addItemComplete(text) {
-    // Add item to data.complete
-    data.complete.push(text);
-    // Update local storage
-    localStorageUpdate();
+function addItemComplete(text, flag) {
+    if (flag === 1) {
+        // Add item to data.complete
+        data.complete.push(text);
+        // Update local storage
+        localStorageUpdate();
+    }
     var completeItem = '<li class="list-group-item list-group-item-success list-group-item-action d-flex justify-content-between align-items-center rounded"><p class="text-truncate">%data%</p><div class="btn-group" role="group" aria-label="functions"><button type="button" class="btn-delete btn btn-danger" data-toggle="tooltip" data-placement="auto" title="Delete activity"><i class="fa fa-2x fa-trash-o" aria-hidden="true"></i></button></div></li>';
     content = completeItem.replace("%data%", text);
     // Add activity to the DOM
