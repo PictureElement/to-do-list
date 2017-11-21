@@ -1,0 +1,108 @@
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #eee;
+}
+
+.fixed-top {
+    box-shadow: 0px 2px 4px rgba(44, 62, 80, 0.15);
+}
+
+ul#pending li,
+ul#complete li {
+    font-weight: 500;
+    margin-bottom: 10px;
+    box-shadow: 0px 1px 2px rgba(44, 62, 80, 0.15);
+}
+
+p {
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+ul#pending li:last-of-type {
+    margin-bottom: 0;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.btn-group button {
+    width: 48px;
+    height: 48px;
+}
+
+div#activities {
+    /* Accommodate for the fixed-top, which is 83.5px */
+    margin-top: 93.5px;
+}
+
+hr {
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+ul#complete {
+    padding-top: 40px;
+    position: relative;
+}
+
+ul#complete:before {
+    content: "";
+    width: 260px;
+    /* 
+        The center of the pseudoelement should be at the middle. That's why I 
+        added the negative margin-left
+    */
+    margin-left: -130px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 20px;
+    left: 50%;
+}
+
+ul#pending:empty:after {
+    content: "You have nothing to do!";
+    margin-top: 10px;
+}
+
+ul#complete:empty:after {
+    content: "You have yet to complete any tasks.";
+}
+
+ul#pending:after, ul#complete:after {
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-weight: 100;
+}
+
+
+
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) {
+    
+}
+
+
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+    
+}
+
+
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 768px) {
+    
+}
