@@ -37,8 +37,8 @@ button:hover {
 }
 
 div#activities {
-    /* Accommodate for the fixed-top, which is 83.5px */
-    margin-top: 93.5px;
+    /* Accommodate for the fixed-top, which is 240px */
+    margin-top: 240px;
 }
 
 hr {
@@ -82,6 +82,12 @@ ul#pending:after, ul#complete:after {
     font-weight: 100;
 }
 
+.secondary-text {
+    font-size: 10px;
+    color: #9099a2;
+    line-height: 16px;
+    margin-bottom: 5px;
+}
 
 /* Small devices (landscape phones, 576px and up) */
 
@@ -89,15 +95,11 @@ ul#pending:after, ul#complete:after {
     
 }
 
-
-
 /* Medium devices (tablets, 768px and up) */
 
 @media (min-width: 768px) {
     
 }
-
-
 
 /* Large devices (desktops, 992px and up) */
 
