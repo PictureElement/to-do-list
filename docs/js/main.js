@@ -116,7 +116,6 @@ $('#pending').on('click', function(e) {
         // Remove list item from the DOM
         listItem.remove();
         // Remove task from data.pending
-        console.log(htmlContent);
         indexOfTask = data.pending.findIndex(i => i.htmlContent === htmlContent);
         task = data.pending[indexOfTask];
         data.pending.splice(indexOfTask, 1);
@@ -188,8 +187,6 @@ function addItemPending(task, flag) {
 
     // Set the object's 'htmlContent' property
     task.htmlContent = htmlContent;
-
-    console.log(htmlContent);
 
     // Add task to the DOM
     $("#pending").prepend(htmlContent);
