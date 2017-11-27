@@ -22,32 +22,29 @@
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,500,700" rel="stylesheet">
-
-        <script>
-            $(document).ready(function(){
-                $('[data-toggle="tooltip"]').tooltip(); 
-            });
-        </script>
     </head>
 
     <body>
         <header>
             <div class="container-fluid fixed-top bg-dark p-4 rounded-bottom">
-                <div class="input-group">
-                    <input id="item" type="text" class="form-control" placeholder="Enter a new activity..." aria-label="Enter a new activity...">
-                    <span class="input-group-btn">
-                        <button id="btn-add" class="btn btn-success" type="button" data-toggle="tooltip" data-placement="auto" title="Add activity"><i class="fa fa-2x fa-plus-circle" aria-hidden="true"></i></button>
-                    </span>
-                </div>
+                <form>
+                    <div class="form-group">
+                      <input id="item-1" type="text" class="form-control" id="" placeholder="Enter new task">
+                    </div>
+                    <div class="form-group">
+                      <input id="item-2" type="date" class="form-control" id="" placeholder="Due date">
+                    </div>
+                    <div class="form-group">
+                      <input id="item-3" type="time" class="form-control" id="" placeholder="Time">
+                    </div>
+                    <button id="item-4" type="submit" class="btn btn-success"><i class="fa fa-2x fa-plus-circle" aria-hidden="true"></i></button>
+                </form>
             </div>
         </header>
         <div id="activities" class="container-fluid">
-            <!-- Pending activities -->
+            <!-- Pending tasks -->
             <ul class="list-group" id="pending"></ul>
-
-     
-
-            <!-- Completed activities -->
+            <!-- Completed tasks -->
             <ul class="list-group" id="complete"></ul>
         </div>
         
