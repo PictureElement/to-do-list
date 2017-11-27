@@ -170,7 +170,7 @@ function addItemPending(text, flag) {
         // Update local storage
         localStorageUpdate();
     }
-    var pendingItem = '<li class="list-group-item list-group-item-warning list-group-item-action d-flex justify-content-between align-items-center rounded"><p class="text-truncate">%data%</p><div class="btn-group" role="group" aria-label="functions"><button type="button" class="btn-delete btn btn-danger" data-toggle="tooltip" data-placement="auto" title="Delete activity"><i class="fa fa-2x fa-trash-o" aria-hidden="true"></i></button><button type="button" class="btn-complete btn btn-info"><i class="fa fa-2x fa-check" aria-hidden="true"></i></button></div></li>';
+    var pendingItem = '<li class="list-group-item list-group-item-warning list-group-item-action d-flex justify-content-between align-items-center rounded"><p class="text-truncate">%data%</p><div class="btn-group" role="group" aria-label="functions"><button type="button" class="btn-delete btn btn-danger"><i class="fa fa-2x fa-trash-o" aria-hidden="true"></i></button><button type="button" class="btn-complete btn btn-info"><i class="fa fa-2x fa-check" aria-hidden="true"></i></button></div></li>';
     content = pendingItem.replace("%data%", text);
     // Add activity to the DOM
     $("#pending").prepend(content);
@@ -187,7 +187,7 @@ function addItemComplete(text, flag) {
         // Update local storage
         localStorageUpdate();
     }
-    var completeItem = '<li class="list-group-item list-group-item-success list-group-item-action d-flex justify-content-between align-items-center rounded"><p class="text-truncate">%data%</p><div class="btn-group" role="group" aria-label="functions"><button type="button" class="btn-delete btn btn-danger" data-toggle="tooltip" data-placement="auto" title="Delete activity"><i class="fa fa-2x fa-trash-o" aria-hidden="true"></i></button></div></li>';
+    var completeItem = '<li class="list-group-item list-group-item-success list-group-item-action d-flex justify-content-between align-items-center rounded"><p class="text-truncate">%data%</p><div class="btn-group" role="group" aria-label="functions"><button type="button" class="btn-delete btn btn-danger"><i class="fa fa-2x fa-trash-o" aria-hidden="true"></i></button></div></li>';
     content = completeItem.replace("%data%", text);
     // Add activity to the DOM
     $("#complete").prepend(content);
