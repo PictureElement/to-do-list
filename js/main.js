@@ -35,14 +35,32 @@ else {
 //------------------------------------------------------------------------------
 
 // Select the add button
-var addButton = $('#btn-add');
+var addButton = $('#item-2');
 
 // Add activity
 // A direct-bound event is used
 addButton.on('click', function() {
-    var text = $('#item').val();
-    // If value is not empty, add it to the data.pending and to the DOM
+    var text = $('#item-1').val();
+    // If text is not empty, add it to data.pending and to the DOM
     if (text) {
+        // flag = 1: need to update local storage and add to 'data'
+        addItemPending(text, 1);
+    }
+})
+
+// Select the input field
+var inputField = $('#item-1');
+
+// Add activity
+// A direct-bound event is used
+inputField.on('keypress', function(e) {
+    var text = $('#item-1').val();
+    // e.which: for key or mouse events, this property indicates the specific 
+    // key or button that was pressed.
+    // console.log(e.which);
+    // If 'Enter' was pressed and the value is not empty
+    if (e.which === 13 && text) {
+        // Add it to data.pending and to the DOM
         // flag = 1: need to update local storage and add to 'data'
         addItemPending(text, 1);
     }
