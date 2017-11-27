@@ -179,7 +179,7 @@ function localStorageUpdate() {
 // Add pending task
 function addItemPending(task, flag) {
     
-    var pendingTask = '<li class="list-group-item list-group-item-warning list-group-item-action d-flex justify-content-between align-items-center rounded"><div><p class="text-truncate">%data1%</p><p class="secondary-text">%data2%, %data3%</p></div><div class="btn-group" role="group" aria-label="functions"><button type="button" class="btn-delete btn btn-danger"><i class="fa fa-2x fa-trash-o" aria-hidden="true"></i></button><button type="button" class="btn-complete btn btn-info"><i class="fa fa-2x fa-check" aria-hidden="true"></i></button></div></li>';
+    var pendingTask = '<li class="list-group-item list-group-item-danger list-group-item-action d-flex justify-content-between align-items-center rounded"><div><p class="text-truncate">%data1%</p><p class="secondary-text">%data2%, %data3%</p></div><div class="btn-group" role="group" aria-label="functions"><button type="button" class="btn-delete btn btn-danger"><i class="fa fa-2x fa-trash-o" aria-hidden="true"></i></button><button type="button" class="btn-complete btn btn-info"><i class="fa fa-2x fa-check" aria-hidden="true"></i></button></div></li>';
     
     var htmlContent = pendingTask.replace("%data1%", task.text);
     htmlContent = htmlContent.replace("%data2%", task.date);
